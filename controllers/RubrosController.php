@@ -30,10 +30,10 @@ class RubrosController extends Controller
     }
 
     public function actionVerRubros(){
-        $countries = $query->orderBy('name')
-            ->offset($pagination->offset)
-            ->limit($pagination->limit)
-            ->all();
+        $query = Rubros::find();
+        $rubros = $query->orderBy('descripcion')->all();
+
+        return $this->render('ver-rubros', ['rubros' => $rubros]);
     }
 
     /**
