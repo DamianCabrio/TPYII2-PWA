@@ -11,12 +11,15 @@ class InscripcionesController extends Controller
     public function actionFormInscripciones()
     {
 
-        // guardado de la fecha actual
-        date_default_timezone_set('America/Buenos_Aires');
-        $fecha = date('d-m-Y h:i:s');
+        // se crea la instancia y se prepara para guardar los datos
+        $inscripciones = new Inscripciones();
+        $inscripciones->nombre = 'Esteban';
+        $inscripciones->correo = 'esteban@ejemplo.com';
+        $inscripciones->save();
+        
 
         //$query = Inscripciones::find();
-        $query = Inscripciones::save();
+        //$query = Inscripciones::save();
 
         $pagination = new Pagination([
             'defaultPageSize' => 5,
