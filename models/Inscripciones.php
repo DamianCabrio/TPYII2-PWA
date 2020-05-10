@@ -1,7 +1,6 @@
 <?php
 
 namespace app\models;
-
 use Yii;
 
 /**
@@ -31,35 +30,15 @@ class Inscripciones extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idBusqueda'], 'required'],
-            [['idBusqueda'], 'integer'],
-            [['fecha'], 'safe'],
-            [['apellido', 'nombre'], 'string', 'max' => 150],
-            [['idBusqueda'], 'exist', 'skipOnError' => true, 'targetClass' => Busquedas::className(), 'targetAttribute' => ['idBusqueda' => 'idBusqueda']],
+
+            // name, email, subject and body are required. Una linea por cada regla
+            [['nombre', 'apellido'], 'required', 'message' => 'Este campo es obligatorio.'],
+
+            // Solo texto
+            [['nombre', 'apellido'], 'match',
+            'pattern' => '/^[a-zA-Z\s]+$/',
+            'message' => 'Sólo se permiten letras.'],
         ];
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function attributeLabels()
-    {
-        return [
-            'idInscripcion' => 'Id Inscripcion',
-            'idBusqueda' => 'Id Busqueda',
-            'fecha' => 'Fecha',
-            'apellido' => 'Apellido',
-            'nombre' => 'Nombre',
-        ];
-    }
-
-    /**
-     * Gets query for [[IdBusqueda0]].
-     *
-     * @return \yii\db\ActiveQuery
-     */
-    public function getIdBusqueda0()
-    {
-        return $this->hasOne(Busquedas::className(), ['idBusqueda' => 'idBusqueda']);
-    }
+    
 }
