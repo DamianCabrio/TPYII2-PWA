@@ -25,25 +25,22 @@ class InscripcionesController extends Controller
             return $this->render('form-inscripciones', ['busquedaNoExiste' => true]);
         }
 
-        
-
         // pregunta si se envió algo desde POST y si sus datos fueron validados
         if ($inscripciones->load(Yii::$app->request->post()) && $inscripciones->validate()) {
             // validar los datos recibidos en el modelo
 
             // los campos se tratan como objetos
-            $inscripciones->idBusqueda = $idBusqueda;
             $inscripciones->fecha = date('Y-m-d');
 
             $inscripciones->save();
             
             // ['nombre de Modelo' => $var]
-            return $this->render('form-inscripciones', ['datosGuardados' => true, 'model' => $inscripciones, 'busquedaNoExiste' => false, 'idBusqueda' => $idBusqueda]);
+            return $this->render('form-inscripciones', ['datosGuardados' => true, 'model' => $inscripciones, 'busquedaNoExiste' => false, 'busqueda' => $busqueda]);
         } else {
             // la página es mostrada inicialmente o hay algún error de validación
 
                                                 //['nombre variable en VIEW', => $variableDatos]
-            return $this->render('form-inscripciones', ['datosGuardados' => false, 'model' => $inscripciones, 'busquedaNoExiste' => false, 'idBusqueda' => $idBusqueda]); // nombre de la variable que va a llevar en el view
+            return $this->render('form-inscripciones', ['datosGuardados' => false, 'model' => $inscripciones, 'busquedaNoExiste' => false, 'busqueda' => $busqueda]); // nombre de la variable que va a llevar en el view
         }
     }
 }

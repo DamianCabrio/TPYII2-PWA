@@ -35,7 +35,7 @@
 		        <td><?= $busqueda->titulo ?></td>
 		        <td><?= $busqueda->empresa ?></td>
 		        <td><?= $busqueda->descripcion ?></td>
-		        <td><a href="?idBusqueda=<?= $busqueda->idBusqueda ?>" class="btn btn-primary active" role="button" aria-pressed="true">Inscribirse</a>
+		        <td><a href="/TPYII2-PWA/web/inscripciones/form-inscripciones?idBusqueda=<?= $busqueda->idBusqueda ?>" class="btn btn-success active" role="button" aria-pressed="true">Inscribirse</a>
 		        <a href="/TPYII2-PWA/web/rubros/ver-inscripciones-trabajo?id=<?= $busqueda->idBusqueda ?>" class="btn btn-primary ml-1" role="button" aria-pressed="true">Ver Inscriptos</a></td>
 		    </tr>
 		<?php endforeach; ?>

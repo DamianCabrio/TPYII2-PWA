@@ -24,17 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ?>
 
         <div class="site-contact">
-        <h1><?= Html::encode($this->title) ?></h1>
-
-        <?php if (Yii::$app->session->hasFlash('contactFormSubmitted')): ?>
-
-            <div class="alert alert-success">
-                Thank you for contacting us. We will respond to you as soon as possible.
-            </div>
-
-
-        <?php else: ?>
-
+        <h1>Inscribirse a: "<?= Html::encode($busqueda[0]->descripcion) ?>"</h1>
             <p>
                 Ingrese sus datos personales en el siguiente formulario para inscribirse en la búsqueda.
             </p>
@@ -44,7 +34,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
 
-                        <input class="form-control my-5" type="hidden" value="<?php echo $idBusqueda; ?>" readonly="">
+                        <input class="form-control my-5" type="hidden" value="<?php echo $busqueda[0]->idBusqueda; ?>" readonly="">
                         
                         <?= $form->field($model, 'nombre')->textInput(['autofocus' => true]) ?>
                         <?= $form->field($model, 'apellido')->textInput(['autofocus' => true]) ?>
@@ -58,8 +48,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 </div>
             </div>
-
-        <?php endif; ?>
 
         <?php 
             if ($datosGuardados){

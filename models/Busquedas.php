@@ -1,4 +1,8 @@
 <?php
+
+namespace app\models;
+use Yii;
+
 class Busquedas extends \yii\db\ActiveRecord
 {
     /**
