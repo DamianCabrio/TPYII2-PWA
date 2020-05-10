@@ -29,8 +29,9 @@ if (count($busqueda) != 0):
 </table>
 <a href="busqueda.php?id=<?= Html::encode($busqueda[0]->idRubro) ?>">Volver Atras</a>
 <?php
-    else:?>
-    <h1>Error al cargar la pagina</h1>
-    <h5>La busqueda insertada no existe</h5>
+    else:
+        $mensaje = "Error al cargar la pagina: La busqueda insertada no existe";
+        echo Html::tag('div', $mensaje , ['class' => 'alert alert-danger']);
+        ?>
         <a href="ver-rubros">Volver Atras</a>
 <?php endif; ?>
