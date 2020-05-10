@@ -4,7 +4,8 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Rubros;
-use app\models\RubrosSearch;
+use app\models\Inscripciones;
+use app\models\Busquedas;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -36,84 +37,17 @@ class RubrosController extends Controller
         return $this->render('ver-rubros', ['rubros' => $rubros]);
     }
 
-    /**
-     * Lists all Rubros models.
-     * @return mixed
-     */
-    public function actionIndex()
-    {
-        $searchModel = new RubrosSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+    public function actionVerInscripcionesTrabajo(){
+        $request = Yii::$app->request;
+        $idBusqueda = $request->get('id');
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
-        ]);
-    }
+        $queryBusquedaTrabajoQuery = Busquedas::find();
+        $busqueda = $queryBusquedaTrabajoQuery->where(["idBusqueda" => $idBusqueda])->all();
 
-    /**
-     * Displays a single Rubros model.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionView($id)
-    {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
-    }
+        $queryInscriptosTrabajo = Inscripciones::find();
+        $inscriptos = $queryInscriptosTrabajo->where(["idBusqueda" => $idBusqueda])->all();
 
-    /**
-     * Creates a new Rubros model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-    public function actionCreate()
-    {
-        $model = new Rubros();
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idRubro]);
-        }
-
-        return $this->render('create', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Updates an existing Rubros model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionUpdate($id)
-    {
-        $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idRubro]);
-        }
-
-        return $this->render('update', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Deletes an existing Rubros model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
+        return $this->render('ver-inscripciones-trabajo', ['busqueda' => $busqueda, "inscriptos" => $inscriptos]);
     }
 
     /**
