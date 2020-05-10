@@ -1,20 +1,4 @@
 <?php
- 
-namespace app\models;
-use Yii;
- 
-/**
-* This is the model class for table "busquedas".
-*
-* @property int $idBusqueda
-* @property int $idRubro
-* @property string $empresa
-* @property string $titulo
-* @property string|null $descripcion
-*
-* @property Rubros $idRubro0
-* @property Inscripciones[] $inscripciones
-*/
 class Busquedas extends \yii\db\ActiveRecord
 {
     /**
@@ -24,7 +8,6 @@ class Busquedas extends \yii\db\ActiveRecord
     {
         return 'busquedas';
     }
- 
     /**
      * {@inheritdoc}
      */
@@ -37,7 +20,6 @@ class Busquedas extends \yii\db\ActiveRecord
             [['idRubro'], 'exist', 'skipOnError' => true, 'targetClass' => Rubros::className(), 'targetAttribute' => ['idRubro' => 'idRubro']],
         ];
     }
- 
     /**
      * {@inheritdoc}
      */
@@ -51,7 +33,6 @@ class Busquedas extends \yii\db\ActiveRecord
             'descripcion' => 'Descripcion',
         ];
     }
- 
     /**
      * Gets query for [[IdRubro0]].
      *
@@ -61,7 +42,6 @@ class Busquedas extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Rubros::className(), ['idRubro' => 'idRubro']);
     }
- 
     /**
      * Gets query for [[Inscripciones]].
      *

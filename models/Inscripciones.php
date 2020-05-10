@@ -1,17 +1,36 @@
 <?php
 
 namespace app\models;
+use Yii;
 
-use yii\db\ActiveRecord;
-
-class Inscripciones extends ActiveRecord{
+/**
+ * This is the model class for table "inscripciones".
+ *
+ * @property int $idInscripcion
+ * @property int $idBusqueda
+ * @property string|null $fecha
+ * @property string|null $apellido
+ * @property string|null $nombre
+ *
+ * @property Busquedas $idBusqueda0
+ */
+class Inscripciones extends \yii\db\ActiveRecord
+{
+    /**
+     * {@inheritdoc}
+     */
+    public static function tableName()
+    {
+        return 'inscripciones';
+    }
 
     /**
-     * @return array the validation rules.
+     * {@inheritdoc}
      */
     public function rules()
     {
         return [
+
             // name, email, subject and body are required. Una linea por cada regla
             [['nombre', 'apellido'], 'required', 'message' => 'Este campo es obligatorio.'],
 
