@@ -14,36 +14,46 @@ class BusquedasController extends Controller
     public function actionIndex()
     {
        
+        //Obtengo los parámetros de la petición usando request, (debe estar el use Yii)
+        $request = Yii::$app->request;  
+        //uso get o post segun como se hayan mandado los parametros
+        //equivalente a: $id = isset($_GET['id']) ? $_GET['id'] : 0
+        $id = $request->get('id',0);
 
-        $request = Yii::$app->request; //como controlar q nos sea nulo 
-        $id = $request->get('id');
+        //controlo si recibio null o tiene un id
+        if ($id == 0) {
+            $error = true;
+            $query = [];
+            $rubro = null;
+        }else{
+            $rubro = Rubros::find()
+                ->where(['idRubro' => $id ])
+                ->all();
 
-        $rubro = Rubros::find()
-            ->where(['idRubro' => $id ])
-            ->all();
+            //Controlo si no encontro un rubro con ese id?
+             if(!empty($rubro)){
 
-        //si no me trajo nada ?
+                //var_dump($model);// Imprime los datos almacenados en $model
+                echo "No hay datos";
+                $query = Busquedas::find()
+                    ->where(['idRubro' => $id ])
+                    ->orderBy('idBusqueda')
+                    ->all();
+                $error = false;
 
-        $query = Busquedas::find()
-            ->where(['idRubro' => $id ])
-            ->orderBy('idBusqueda')
-            ->all();
+            }else{
 
-        /*$pagination = new Pagination([
-            'defaultPageSize' => 6,
-            'totalCount' => $query->count(),
-        ]);*/
-
-        /*$busquedas = $query->orderBy('idBusqueda')
-            ->offset($pagination->offset)
-            ->limit($pagination->limit)
-            ->all();*/
-
+                 $error = true;
+                $query = [];
+                $rubro = null;
+            }
+        }
+        
         return $this->render('index', [
             'busquedas' => $query,
             'rubro' => $rubro,
-            //'error' => $error, //hacer true o false si no encuentra rubro
-            //'pagination' => $pagination,
+            'error' => $error, //error es true o false si no encuentra rubro
+            
         ]);
     }
 }

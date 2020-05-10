@@ -1,9 +1,20 @@
 <?php
-use yii\helpers\Html;
-use yii\widgets\LinkPager;
-//use yii\bootstrap\Dropdown;
+	use yii\helpers\Html;
+	use yii\widgets\LinkPager;
+	
+	//controlar la variable error si es false hago todo si es true muestro mensaje
+	if ($error) { 
+		$mensaje = "Cuidado!! No existe un rubro válido para las busquedas";
+		echo Html::tag('div', $mensaje , ['class' => 'alert alert-danger']);
+		$rubroElegido = '';
+	}else{
+		$rubroElegido = $rubro[0]->descripcion;
+	}
+
 ?>
-<h1>Busquedas Por Rubro: <?= $rubro[0]->descripcion ?></h1>
+
+
+<h1>Busquedas Por Rubro: <?= $rubroElegido ?></h1>
 
 
 
@@ -30,4 +41,6 @@ use yii\widgets\LinkPager;
 		<?php endforeach; ?>
 	</tbody>
 </table>
+
+
 
