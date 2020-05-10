@@ -43,8 +43,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
 
-                    <?= $form->field($model, 'nombre')->textInput(['autofocus' => true]) ?>
-                    <?= $form->field($model, 'apellido')->textInput(['autofocus' => true]) ?>
+                    <?= $form->field($model, 'name')->textInput(['autofocus' => true]) ?>
+                    <?= $form->field($model, 'name')->textInput(['autofocus' => true]) ?>
 
                     <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
                         'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
