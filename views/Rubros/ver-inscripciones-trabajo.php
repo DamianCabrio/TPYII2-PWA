@@ -27,11 +27,13 @@ if (count($busqueda) != 0):
     <?php endforeach; ?>
     </tbody>
 </table>
-<a href="busqueda.php?id=<?= Html::encode($busqueda[0]->idRubro) ?>">Volver Atras</a>
+<a href="/TPYII2-PWA/web/busquedas/index?id=<?= Html::encode($busqueda[0]->idRubro) ?>">Volver Atras</a>
 <?php
     else:
         $mensaje = "Error al cargar la pagina: La busqueda insertada no existe";
         echo Html::tag('div', $mensaje , ['class' => 'alert alert-danger']);
         ?>
-        <a href="ver-rubros">Volver Atras</a>
+        <a href="/TPYII2-PWA/web/rubros/ver-rubros">Volver Atras</a>
 <?php endif; ?>
+
+ 

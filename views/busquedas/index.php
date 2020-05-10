@@ -19,7 +19,7 @@
 
 
 <!--Cargo en la tabla todas las busquedas del rubro elegido-->
-<table class="table">
+<table class="table table-hover table-striped">
 	<thead>
 		<th scope="col">#id</th>
       	<th scope="col">Titulo</th>
@@ -31,16 +31,16 @@
 	<tbody>
 		<?php foreach ($busquedas as $busqueda): ?>
 		    <tr>
-		        <td><?= $busqueda->idBusqueda ?></td>
+		        <td><?= Html::encode($busqueda->idBusqueda) ?></td>
 		        <td><?= $busqueda->titulo ?></td>
 		        <td><?= $busqueda->empresa ?></td>
 		        <td><?= $busqueda->descripcion ?></td>
-		        <td><a href="index.php?idBusqueda=<?= $busqueda->idBusqueda ?>" class="btn btn-primary active" role="button" aria-pressed="true">Inscribirse</a>
-		        <a href="index.php?idBusqueda=<?= $busqueda->idBusqueda ?>" class="btn btn-primary ml-1" role="button" aria-pressed="true">Ver Inscriptos</a></td>
+		        <td><a href="?idBusqueda=<?= $busqueda->idBusqueda ?>" class="btn btn-primary active" role="button" aria-pressed="true">Inscribirse</a>
+		        <a href="/TPYII2-PWA/web/rubros/ver-inscripciones-trabajo?id=<?= $busqueda->idBusqueda ?>" class="btn btn-primary ml-1" role="button" aria-pressed="true">Ver Inscriptos</a></td>
 		    </tr>
 		<?php endforeach; ?>
 	</tbody>
 </table>
-
+<a href="/TPYII2-PWA/web/rubros/ver-rubros">Volver Atras</a>
 
 
