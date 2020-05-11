@@ -1,7 +1,6 @@
 <?php
 
 namespace app\models;
-use Yii;
 
 /**
  * This is the model class for table "inscripciones".
@@ -36,9 +35,9 @@ class Inscripciones extends \yii\db\ActiveRecord
 
             // Solo texto
             [['nombre', 'apellido'], 'match',
-            'pattern' => '/^[a-zA-Z\s]+$/',
-            'message' => 'Sólo se permiten letras.'],
+                'pattern' => '/^[a-zA-Z\s]+$/',
+                'message' => 'Sólo se permiten letras.'],
         ];
     }
-    
+
 }

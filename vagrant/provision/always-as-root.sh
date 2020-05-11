@@ -2,7 +2,7 @@
 
 #== Bash helpers ==
 
-function info {
+function info() {
   echo " "
   echo "--> $1"
   echo " "
@@ -10,7 +10,7 @@ function info {
 
 #== Provision script ==
 
-info "Provision-script user: `whoami`"
+info "Provision-script user: $(whoami)"
 
 info "Restart web-stack"
 service php7.0-fpm restart

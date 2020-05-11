@@ -6,7 +6,7 @@ github_token=$(echo "$1")
 
 #== Bash helpers ==
 
-function info {
+function info() {
   echo " "
   echo "--> $1"
   echo " "
@@ -14,7 +14,7 @@ function info {
 
 #== Provision script ==
 
-info "Provision-script user: `whoami`"
+info "Provision-script user: $(whoami)"
 
 info "Configure composer"
 composer config --global github-oauth.github.com ${github_token}
