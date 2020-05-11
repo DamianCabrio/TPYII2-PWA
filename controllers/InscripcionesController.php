@@ -28,7 +28,7 @@ class InscripcionesController extends Controller
         // pregunta si se envió algo desde POST y si sus datos fueron validados
         if ($inscripciones->load(Yii::$app->request->post()) && $inscripciones->validate()) {
             // validar los datos recibidos en el modelo
-
+            $inscripciones->idBusqueda = $idBusqueda;
             // los campos se tratan como objetos
             $inscripciones->fecha = date('Y-m-d');
 
